@@ -6,5 +6,9 @@ Create screenshots every few seconds. Also called a "black box" for yourself. If
 - mss (install with `pip3 install mss`)
 
 ### Linux:
-- sudo apt-get install python-wnck
+```
+sudo apt-get install python-wnck
+sudo apt-get install python3-xlib
+```
+
 

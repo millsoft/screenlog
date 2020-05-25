@@ -4,10 +4,36 @@
 
 import logging
 import sys
+import subprocess
+import gi
+
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
                     level=logging.DEBUG,
                     stream=sys.stdout)
+
+def get_active_window3():
+    command = "xdotool getactivewindow getwindowname"
+    title = subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8").strip()
+
+    command = "xdotool getactivewindow getwindowpid"
+    pid = subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8").strip()
+
+    command = "more /proc/" + pid + "/cmdline"
+    cmdline = subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8").strip()
+    re = {'title': title, 'pid': pid, 'cmdline': cmdline}
+    print(re)
+    return re
+
+
+
+
+def get_active_window2():
+    #command = "xprop -root _NET_ACTIVE_WINDOW | sed 's/.* //'"
+    command = "xdotool getactivewindow getwindowname"
+    frontmost = subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8").strip()
+    return frontmost
+
 
 
 def get_active_window():
@@ -70,4 +96,4 @@ def get_active_window():
         print(sys.version)
     return active_window_name
 
-print("Active window: %s" % str(get_active_window()))
+#print("Active window: %s" % str(get_active_window()))

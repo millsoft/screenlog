@@ -4,6 +4,7 @@ Create screenshots every few seconds. Also called a "black box" for yourself. If
 ## Requirments
 - Python 3
 - mss (install with `pip3 install mss`)
+- `pip3 install python-libxdo`
 
 ### Linux:
 ```

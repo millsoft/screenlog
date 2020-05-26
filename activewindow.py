@@ -6,24 +6,33 @@ import logging
 import sys
 import subprocess
 import gi
-
+from xdo import Xdo
+import app
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
                     level=logging.DEBUG,
                     stream=sys.stdout)
 
 def get_active_window3():
-    command = "xdotool getactivewindow getwindowname"
-    title = subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8").strip()
 
-    command = "xdotool getactivewindow getwindowpid"
-    pid = subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8").strip()
+    xdo = Xdo()
 
-    command = "more /proc/" + pid + "/cmdline"
+    win_id = xdo.get_active_window();
+    title = xdo.get_window_name(win_id)
+    pid = xdo.get_pid_window(win_id)
+    window_location = xdo.get_window_location(win_id)
+    window_size = xdo.get_window_size(win_id)
+
+    command = "more /proc/" + str(pid) + "/cmdline"
     cmdline = subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8").strip()
-    re = {'title': title, 'pid': pid, 'cmdline': cmdline}
-    print(re)
-    return re
+
+    l = app.LogEntry
+    l.title = title
+    l.pid = pid
+    l.cmdline = cmdline
+    l.window_location = window_location
+    l.window_size = window_size
+    return l
 
 
 

@@ -37,6 +37,7 @@ class Blackbox(object):
                     self.active_window = current_window.title
 
                     s = Screenshot()
+                    print(current_window.window_size)
                     s.makeCoordinatedScreenshot(current_window)
 
             except Exception as err:

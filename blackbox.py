@@ -18,7 +18,6 @@ class Blackbox(object):
         """
         self.interval = interval
         self.active_window = {}
-        self.test_a = {}
 
         thread = threading.Thread(target=self.run, args=())
         thread.daemon = True  # Daemonize thread
@@ -31,14 +30,12 @@ class Blackbox(object):
 
             try:
                 current_window = activewindow.get_active_window3()
-
                 if current_window.title != self.active_window:
                     # New Window detected
                     self.active_window = current_window.title
 
-                    s = Screenshot()
-                    print(current_window.window_size)
-                    s.makeCoordinatedScreenshot(current_window)
+                    s = Screenshot(current_window)
+                    s.makeCoordinatedScreenshot()
 
             except Exception as err:
                 print("{0}".format(err))

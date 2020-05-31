@@ -11,7 +11,7 @@ import re
 
 
 class Screenshot:
-    screenshotPath = 'screenshots'
+    screenshotPath = 'data/screenshots'
 
     def __init__(self, log_entry: app.LogEntry):
         self.log_entry = log_entry
@@ -39,6 +39,7 @@ class Screenshot:
 
         filename = self.getFilename()
         self.image.save(filename)
+        return filename
 
     def takeScreenshot(self):
         le = self.log_entry

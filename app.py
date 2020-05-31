@@ -11,3 +11,4 @@ class LogEntry:
     cmdline = ""
     window_location = None
     window_size = None
+    screenshot_filename = ""

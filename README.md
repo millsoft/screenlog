@@ -3,13 +3,11 @@ Create screenshots every few seconds. Also called a "black box" for yourself. If
 
 ## Requirments
 - Python 3
-- mss (install with `pip3 install mss`)
-- `pip3 install python-libxdo`
+- `pip3 install mss python-libxdo pyautogui`
 
 ### Linux:
 ```
-sudo apt-get install python-wnck
-sudo apt-get install python3-xlib
+sudo apt-get install python-wnck python3-xlib scrot
 ```
 
 
